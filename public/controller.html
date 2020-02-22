@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+        <script src="js/clickyclick.js"></script>
+    </head>
+    <body>
+        <h1>This is the controller client</h1>
+
+        <!-- some very nice color buttons -->
+        
+        
+        
+        <a-scene>
+        
+
+            <a-entity id="rig" position="0 2 2">
+              <a-entity id="camera" camera look-controls></a-entity>
+              <a-entity cursor="rayOrigin:mouse;"
+                        raycaster="far:20; interval:100; objects:.clickable;">
+              </a-entity>
+            </a-entity>
+              
+                             
+            <a-entity id="plane"
+                      position="0 0 -2"
+                      rotation="-70 0 0"
+                      scale="1 1 1"
+                      geometry="primitive:plane; width:6.0; height:2.0;"
+                      material="color: #979797;">
+                  </a-entity>
+            <a-entity id="red"
+                  class="clickable"
+                  position="-2 0 -2"
+                  rotation="20 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:red;"
+                  clickyclick="">
+            </a-entity>
+      
+            <a-entity id="blue"
+                  class="clickable"
+                  position="0 0 -2"
+                  rotation="20 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:blue;"
+                  clickyclick="">
+            </a-entity>
+      
+            <a-entity id="green"
+                  class="clickable"
+                  position="2 0 -2"
+                  rotation="20 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:green;"
+                  clickyclick="">
+            </a-entity>
+            
+          </a-scene>
+        
+        
+        
+        
+        
+        
+        <!-- scripts go to bottom if you want them to execute AFTER the rest of the web page renders -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+
+            //default connect event
+            socket.on('connect', function() {
+                console.log("connected!");
+            });
+
+            document.querySelector('#red').addEventListener('click', function() {
+                socket.emit('red');
+            });
+
+            document.querySelector('#green').addEventListener('click', function() {
+                socket.emit('green');
+            });
+
+            document.querySelector('#blue').addEventListener('click', function() {
+                socket.emit('blue');
+            });
+        </script>
+    </body>
+</html>
