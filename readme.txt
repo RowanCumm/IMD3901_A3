@@ -1,0 +1,5 @@
+The 'puppeteer' player controls the 'puppet' player through the use of the 4 directional buttons and changes the little floating cube that follows the player using the three buttons on the ground. The puppet player can look around and click but cannot move. 
+
+Uh websockets was an interesting challenge, for the most part it seemed to work well and then it had some interesting problems. A different issue I had appear was that a ball was not registering as blue and was saying its colour was in fact red. This really stopped me in my tracks and ended up not allowing me to finish what I intended to accomplish. It did seem to be a nice tool to use and certainly I will take it into consideration for the term project but I'm going to need to figure out what I'm doing wrong with those colours in the future!
+
+https://github.com/RowanCumm/IMD3901_A3
