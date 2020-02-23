@@ -21,7 +21,7 @@
                              
             <a-entity id="plane"
                       position="0 0 -2"
-                      rotation="-70 0 0"
+                      rotation="-90 0 0"
                       scale="1 1 1"
                       geometry="primitive:plane; width:6.0; height:2.0;"
                       material="color: #979797;">
@@ -54,6 +54,20 @@
 
 
                 document.querySelector('#change').setAttribute('material','color', 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')');
+            });
+
+            socket.on('move_change', function(data) {
+                console.log(data);
+
+                //set background color with received color
+
+
+                let position = document.querySelector('#rig').getAttribute('position');
+                position.x = data.x + position.x;
+                position.y = data.y + position.y;
+                position.z = data.z + position.z;
+
+                document.querySelector('#rig').setAttribute('position', {x: position.x, y: position.y, z: position.z});
             });
         </script>
     </body>

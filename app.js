@@ -42,6 +42,26 @@ socketIO.on('connection', function(socket) {
         console.log('blue event heard');
         socketIO.sockets.emit('color_change', {r:0, g:0, b:255});
     });
+
+    socket.on('up', function(data) {
+        console.log('up event heard');
+        socketIO.sockets.emit('move_change', {x:0, y:0, z:-2});
+    });
+
+    socket.on('left', function(data) {
+        console.log('left event heard');
+        socketIO.sockets.emit('move_change', {x:-2, y:0, z:0});
+    });
+
+    socket.on('right', function(data) {
+        console.log('right event heard');
+        socketIO.sockets.emit('move_change', {x:2, y:0, z:0});
+    });
+
+    socket.on('down', function(data) {
+        console.log('down event heard');
+        socketIO.sockets.emit('move_change', {x:0, y:0, z:2});
+    });
 });
 
 //finally, start server

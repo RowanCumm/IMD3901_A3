@@ -56,7 +56,43 @@
                   material="color:green;"
                   clickyclick="">
             </a-entity>
+
+            <a-entity id="up"
+                  class="clickable"
+                  position="0 4 -2"
+                  rotation="90 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:blue;"
+                  clickyclick="">
+            </a-entity>
+
+            <a-entity id="left"
+                  class="clickable"
+                  position="-1 3 -2"
+                  rotation="90 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:green;"
+                  clickyclick="">
+            </a-entity>
             
+            <a-entity id="right"
+                  class="clickable"
+                  position="1 3 -2"
+                  rotation="90 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:red;"
+                  clickyclick="">
+            </a-entity>
+
+            <a-entity id="down"
+                  class="clickable"
+                  position="0 2 -2"
+                  rotation="90 0 0"
+                  geometry="primitive:cylinder; radius:0.5; height:0.1;"
+                  material="color:orange;"
+                  clickyclick="">
+            </a-entity>
+
           </a-scene>
         
         
@@ -84,6 +120,21 @@
 
             document.querySelector('#blue').addEventListener('click', function() {
                 socket.emit('blue');
+            });
+            document.querySelector('#up').addEventListener('click', function() {
+                socket.emit('up');
+                console.log('up');
+            });
+
+            document.querySelector('#left').addEventListener('click', function() {
+                socket.emit('left');
+            });
+
+            document.querySelector('#right').addEventListener('click', function() {
+                socket.emit('right');
+            });
+            document.querySelector('#down').addEventListener('click', function() {
+                socket.emit('down');
             });
         </script>
     </body>
