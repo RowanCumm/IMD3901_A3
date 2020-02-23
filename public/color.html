@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
         <script src="js/clickyclick.js"></script>
+        <script src="js/collect.js"></script>
     </head>
     <body>
         <h1>This is the color client</h1>
@@ -16,23 +17,57 @@
               <a-entity cursor="rayOrigin:mouse;"
                         raycaster="far:20; interval:100; objects:.clickable;">
               </a-entity>
+              <a-entity id="change"
+                  class="clickable"
+                  position="-0.25 0 -0.5"
+                  rotation="0 0 0"
+                  geometry="primitive:box; width: 0.1; height:0.1; depth:0.1;"
+                  material="color:red;"
+                  animation="property: object3D.position.y; to: 0.1; dir: alternate; dur: 2000; loop: true"></a-entity>>
+            </a-entity>
             </a-entity>
               
                              
             <a-entity id="plane"
-                      position="0 0 -2"
+                      position="0 0 -20"
                       rotation="-90 0 0"
                       scale="1 1 1"
-                      geometry="primitive:plane; width:6.0; height:2.0;"
+                      geometry="primitive:plane; width:6.0; height:50;"
                       material="color: #979797;">
-                  </a-entity>
-            <a-entity id="change"
-                  class="clickable"
-                  position="0 0 -2"
-                  rotation="0 0 0"
-                  geometry="primitive:box; width: 3; height:0.1;"
-                  material="color:red;">
             </a-entity>
+            <a-entity id="plane"
+                      position="-3 3 -20"
+                      rotation="0 90 90"
+                      scale="1 1 1"
+                      geometry="primitive:plane; width:6.0; height:50;"
+                      material="color: #979797;">
+            </a-entity>
+
+            <a-entity id="plane"
+                      position="3 3 -20"
+                      rotation="0 -90 90"
+                      scale="1 1 1"
+                      geometry="primitive:plane; width:6.0; height:50;"
+                      material="color: #979797;">
+            </a-entity>
+            <a-entity id="plane"
+                      position="0 6 -20"
+                      rotation="90 90 -90"
+                      scale="1 1 1"
+                      geometry="primitive:plane; width:6.0; height:50;"
+                      material="color: #979797;">
+            </a-entity>
+
+            <!-- Collectable Orbs-->
+
+            <a-entity id="orb"
+                    geometry="primitive: sphere; radius: 0.5"
+                    material="color: rgb(0, 0, 255)"
+                    position="0 1 -4"
+                    collect="">
+            </a-entity>
+
+
             
           </a-scene>
 
