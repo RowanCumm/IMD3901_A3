@@ -22,10 +22,13 @@ AFRAME.registerComponent( 'collect',{
     },
     collectOrb: function() {
         const Context_AF = this;
-        console.log(document.querySelector('#change').getAttribute('material', 'color'));
+        let changecube = document.querySelector('#change').getAttribute('material').color;
+        let orb = Context_AF.el.getAttribute('material').color;
+        console.log(changecube);
+        console.log(Context_AF.el.getAttribute('material').color);
 
 
-        if (document.querySelector('#change').getAttribute('material','color') === Context_AF.el.getAttribute('material', 'color'))
+        if (changecube === orb)
         {
             Context_AF.el.parentNode.removeChild(Context_AF.el);
         }

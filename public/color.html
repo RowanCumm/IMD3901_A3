@@ -22,7 +22,7 @@
                   position="-0.25 0 -0.5"
                   rotation="0 0 0"
                   geometry="primitive:box; width: 0.1; height:0.1; depth:0.1;"
-                  material="color:red;"
+                  material="color:rgb(255,0,0);"
                   animation="property: object3D.position.y; to: 0.1; dir: alternate; dur: 2000; loop: true"></a-entity>>
             </a-entity>
             </a-entity>
@@ -61,8 +61,9 @@
             <!-- Collectable Orbs-->
 
             <a-entity id="orb"
+                    class="clickable"
                     geometry="primitive: sphere; radius: 0.5"
-                    material="color: rgb(0, 0, 255)"
+                    material="color: rgb(0,0,255)"
                     position="0 1 -4"
                     collect="">
             </a-entity>
