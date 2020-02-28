@@ -28,13 +28,40 @@ AFRAME.registerComponent( 'collect',{
         console.log(collectCount);
         console.log(Context_AF.el.getAttribute('material').color);
 
-
-        if (changecube === orb)
-        {
-            collectCount= collectCount+1;
-            document.querySelector('#change').setAttribute('text','value', collectCount);
-            Context_AF.el.parentNode.removeChild(Context_AF.el);
+        if (Context_AF.el.getAttribute('id') != 'BOTH_WIN'&&Context_AF.el.getAttribute('id') != 'ONLY_YOU_WIN'){
+            if (changecube === orb)
+            {
+                collectCount= collectCount+1;
+                document.querySelector('#change').setAttribute('text','value', collectCount);
+                Context_AF.el.parentNode.removeChild(Context_AF.el);
+            }
         }
+        else if (document.querySelector('#change').getAttribute('text').value != ':)' && document.querySelector('#change').getAttribute('text').value != ':3') {
+            if(Context_AF.el.getAttribute('id') == 'BOTH_WIN'){
+                let WINNERSCREEN = document.createElement('a-entity');
+                WINNERSCREEN.setAttribute('geometry', "primitive: plane; width: 10.0; height: 10.0");
+                WINNERSCREEN.setAttribute('text', 'value', "You and your controller have won! Congrats");
+                WINNERSCREEN.setAttribute('position', '2 3 -42');
+                WINNERSCREEN.setAttribute('material','color: #f38aff')
+                let scene = document.querySelector('a-scene');
+                scene.appendChild(WINNERSCREEN);
+                document.querySelector('#change').setAttribute('text','value', ':)');
+                Context_AF.el.parentNode.removeChild(Context_AF.el);
+            }
+
+            else if(Context_AF.el.getAttribute('id') == 'ONLY_YOU_WIN'){
+                let winSCREEN = document.createElement('a-entity');
+                winSCREEN.setAttribute('geometry', "primitive: plane; width: 10.0; height: 10.0");
+                winSCREEN.setAttribute('text', 'value', "Only you have won, good job");
+                winSCREEN.setAttribute('position', '2 3 -42');
+                winSCREEN.setAttribute('material','color: #f38aff')
+                let scene = document.querySelector('a-scene');
+                scene.appendChild(winSCREEN);
+                document.querySelector('#change').setAttribute('text','value', ':3');
+                Context_AF.el.parentNode.removeChild(Context_AF.el);
+            }
+        }
+
         
     }
 });
