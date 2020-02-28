@@ -62,6 +62,11 @@ socketIO.on('connection', function(socket) {
         console.log('down event heard');
         socketIO.sockets.emit('move_change', {x:0, y:0, z:2});
     });
+
+    socket.on('change_requested', function(data) {
+        console.log('request for change heard!');
+        socketIO.sockets.emit('request_change', {x:0, y:0, z:2});
+    });
 });
 
 //finally, start server

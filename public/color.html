@@ -18,13 +18,14 @@
                         raycaster="far:20; interval:100; objects:.clickable;">
               </a-entity>
               <a-entity id="change"
+                  text="align: center; value: 0; zOffset:0.06; wrapCount: 1;"
                   class="clickable"
                   position="-0.25 0 -0.5"
                   rotation="0 0 0"
                   geometry="primitive:box; width: 0.1; height:0.1; depth:0.1;"
                   material="color:rgb(255,0,0);"
                   animation="property: object3D.position.y; to: 0.1; dir: alternate; dur: 2000; loop: true"></a-entity>>
-            </a-entity>
+                </a-entity>
             </a-entity>
               
                              
@@ -81,6 +82,10 @@
                 console.log("connected!");
             });
 
+            document.querySelector('#change').addEventListener('click', function() {
+                socket.emit('change_requested');
+            });
+
             socket.on('color_change', function(data) {
                 //create rgb color string for css
                 let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
@@ -99,7 +104,10 @@
 
 
                 let position = document.querySelector('#rig').getAttribute('position');
-                position.x = data.x + position.x;
+                if ((position.x > -2 && data.x == -2)|| (position.x < 2 && data.x == 2)){
+                    position.x = data.x + position.x;
+                }
+                
                 position.y = data.y + position.y;
                 position.z = data.z + position.z;
 

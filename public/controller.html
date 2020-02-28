@@ -59,7 +59,7 @@
 
             <a-entity id="up"
                   class="clickable"
-                  position="0 4 -2"
+                  position="-2 4 -2"
                   rotation="90 0 0"
                   geometry="primitive:cylinder; radius:0.5; height:0.1;"
                   material="color:blue;"
@@ -68,7 +68,7 @@
 
             <a-entity id="left"
                   class="clickable"
-                  position="-1 3 -2"
+                  position="-3 3 -2"
                   rotation="90 0 0"
                   geometry="primitive:cylinder; radius:0.5; height:0.1;"
                   material="color:green;"
@@ -77,7 +77,7 @@
             
             <a-entity id="right"
                   class="clickable"
-                  position="1 3 -2"
+                  position="-1 3 -2"
                   rotation="90 0 0"
                   geometry="primitive:cylinder; radius:0.5; height:0.1;"
                   material="color:red;"
@@ -86,12 +86,26 @@
 
             <a-entity id="down"
                   class="clickable"
-                  position="0 2 -2"
+                  position="-2 2 -2"
                   rotation="90 0 0"
                   geometry="primitive:cylinder; radius:0.5; height:0.1;"
                   material="color:orange;"
                   clickyclick="">
             </a-entity>
+
+            <a-entity id="map"
+                position="2 3 -2"
+                geometry="primitive:plane; width:3.0; height:3.0;"
+                material="color: #F0B27A;">
+            </a-entity>
+
+            <a-entity id="puppet"
+                position="2 2.25 -2"
+                geometry="primitive:plane; width:1; height:1;"
+                material="color: purple;"
+                animation="property: components.material.material.color; type: color; to: purple; dur: 200">
+            </a-entity>
+        
 
           </a-scene>
         
@@ -110,6 +124,20 @@
                 console.log("connected!");
             });
 
+            socket.on('request_change', function(data){
+                let puppet_colour = document.querySelector('#puppet').getAttribute('material').color;
+                console.log(puppet_colour);
+                if(document.querySelector('#puppet').getAttribute('animation').to == 'green'){
+                    document.querySelector('#puppet').setAttribute('animation', "property: components.material.material.color; type: color; to: purple; dur: 200");
+                }
+
+                else if(document.querySelector('#puppet').getAttribute('animation').to == 'purple'){
+                    document.querySelector('#puppet').setAttribute('animation', "property: components.material.material.color; type: color; to: green; dur: 200");
+                }
+                
+
+            });
+
             document.querySelector('#red').addEventListener('click', function() {
                 socket.emit('red');
             });
@@ -123,7 +151,6 @@
             });
             document.querySelector('#up').addEventListener('click', function() {
                 socket.emit('up');
-                console.log('up');
             });
 
             document.querySelector('#left').addEventListener('click', function() {

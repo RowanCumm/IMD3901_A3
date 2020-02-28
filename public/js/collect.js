@@ -22,14 +22,17 @@ AFRAME.registerComponent( 'collect',{
     },
     collectOrb: function() {
         const Context_AF = this;
+        let collectCount = parseInt(document.querySelector('#change').getAttribute('text').value);
         let changecube = document.querySelector('#change').getAttribute('material').color;
         let orb = Context_AF.el.getAttribute('material').color;
-        console.log(changecube);
+        console.log(collectCount);
         console.log(Context_AF.el.getAttribute('material').color);
 
 
         if (changecube === orb)
         {
+            collectCount= collectCount+1;
+            document.querySelector('#change').setAttribute('text','value', collectCount);
             Context_AF.el.parentNode.removeChild(Context_AF.el);
         }
         
